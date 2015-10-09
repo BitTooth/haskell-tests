@@ -36,15 +36,25 @@ myLength (x:xs) = 1 + myLength xs
 
 -- 5. Reverse the list
 myReverse :: [a] -> [a]
-myReverse [x] = [x]
+myReverse [] = []
 myReverse (x:xs) = (myReverse xs) ++ [x]
 
+-- 5. Reverse using Prelude
+reversePrelude :: [a] -> [a]
+reversePrelude xs = foldl (flip (:)) [] xs
+
 -- 6. Is palindrome
-isPalindrome :: [a] -> Bool
+palindromeCmp :: Eq a => [a] -> [a] -> Bool
+palindromeCmp [x] [y] = x == y
+palindromeCmp (x:xs) (y:ys) = if x == y 
+								then palindromeCmp xs ys 
+								else False
+
+isPalindrome :: Eq a => [a] -> Bool
 isPalindrome [] = True
 isPalindrome [x] = True
-isPalindrome (x:xs:y) = (x == y) && isPalindrome xs
+isPalindrome xs = palindromeCmp xs $ reversePrelude xs
 
 main = do {
-	print $ myReverse [125, 24, 15];
+	print $ isPalindrome [125, 24, 125];
 }
