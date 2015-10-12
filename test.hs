@@ -78,16 +78,16 @@ dublicate (x:xs) = x : x : dublicate xs
 
 mysign :: Integer -> Integer
 mysign x 	| x > 0 	= 1
-			| x == 0 	= 0
-			| x < 0 	= -1
+		| x == 0 	= 0
+		| x < 0 	= -1
 
 -- let example 
 letTest :: Integer -> Integer -> Integer -> Integer -> Integer
-letTest a b c d = let y = a * b 
-                      f x = (x + y) * y
-                      in f c + f d
+letTest a b c d = let 	y = a * b 
+			f x = (x + y) * y
+			in f c + f d
 
 
-main = do {
-	print $ letTest 1 2 3 4
-}
+main = do 
+	print $ isPalindrome [1,2,3,4,3,2,1];
+	print $ letTest 1 2 3 4;
